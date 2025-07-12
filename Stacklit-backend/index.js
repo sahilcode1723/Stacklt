@@ -1,5 +1,6 @@
 // index.js
-
+require("dotenv").config({ path: __dirname + "/.env" });
+console.log("INDEX JWT_SECRET:", process.env.JWT_SECRET);
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
@@ -11,6 +12,8 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const answerRoutes = require("./routes/answerRoutes");
+app.use("/api/answers", answerRoutes);
 
 app.use(cors());
 app.use(express.json());
